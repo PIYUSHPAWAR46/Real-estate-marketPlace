@@ -1,4 +1,4 @@
-import {GoogleAuthProvider, getAuth, signInWithPopup} from 'firebase/auth'
+import {GoogleAuthProvider, getAuth, signInWithPopup} from 'firebase/auth';
 import {app} from '../firebase.js';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
@@ -22,9 +22,11 @@ const OAuth = () => {
             headers: {
                 'Content-Type' : 'application/json',
             },
-            body : JSON.stringify({name : result.user.displayName, email : result.user.email, photo: result.user.photoURL})
+            body : JSON.stringify({name : result.user.displayName, 
+                                email : result.user.email, 
+                                photo: result.user.photoURL,})
             
-        })
+        });
         const data = await res.json();
         //console.log(data);
         dispatch(signInSuccess(data));
