@@ -9,6 +9,7 @@ import { updateUserStart,
   deleteUserStart,
   deleteUserSuccess,
   signOutUserStart} from '../redux/user/userSlice.js';
+import {Link} from 'react-router-dom';
 
 const Profile = () => {
 
@@ -169,8 +170,8 @@ const Profile = () => {
           {loading ? 'loading....' : 'Update'}
         </button>
 
-        {/* <Link className='bg-green-700 text-white p-3 rounded-lg 
-        uppercase text-center hover:opacity-95' to={'/create-listing'}>Create Listing</Link> */}
+        <Link className='bg-green-700 text-white p-3 rounded-lg 
+        uppercase text-center hover:opacity-95' to={'/create-listing'}>Create Listing</Link> 
       </form>
       <div className='flex justify-between mt-2'>
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete account</span>
