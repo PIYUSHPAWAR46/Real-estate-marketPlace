@@ -9,7 +9,7 @@ export default function CreateListing () {
   const {currentUser} = useSelector((state)=> state.user);
   const navigate = useNavigate();
   const [ imgFiles, setImgFiles] = useState([]);
-  console.log(imgFiles);
+  //console.log(imgFiles);
     const [formData, setFormData] = useState({
         imageUrls: [],
         name: '',
