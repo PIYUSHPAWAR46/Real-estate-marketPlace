@@ -38,8 +38,9 @@ const Profile = () => {
         handleFileUpload(file);
       }
      },[file]);
+    
      
-     const handleFileUpload =(file)=>{
+     const handleFileUpload = (file)=>{
         const storage = getStorage(app);
         const fileName = new Date().getTime() + file.name;
         const storageRef = ref(storage, fileName);
@@ -58,10 +59,13 @@ const Profile = () => {
           ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>
                setFormData({...formData, avatar: downloadURL}) 
-               )
+              
+               );
           }
         )
+        
      };
+     
 
      const handleChange = (e) =>{
         setFormData({...formData, [e.target.id]: e.target.value});
