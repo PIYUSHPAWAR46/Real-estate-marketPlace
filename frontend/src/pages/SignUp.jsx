@@ -50,11 +50,11 @@ const SignUp = () => {
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <input type="text" placeholder='username'
+        <input type="text" placeholder='username' required
         className='border p-3 rounded-lg' id='username' onChange={handleChange} />
-        <input type="text" placeholder='email' 
+        <input type="email" placeholder='email' required
         className='border p-3 rounded-lg' id='email' onChange={handleChange}/>
-        <input type="text" placeholder='password' 
+        <input type="password" placeholder='password' required minlength="6"
         className='border p-3 rounded-lg' id='password' onChange={handleChange}/>
         <button className='bg-slate-700 text-white p-3 rounded-lg 
         uppercase hover:opacity-95 disabled:opacity-80'>{loading ? 'Loading...' : 'Sign Up'}</button>

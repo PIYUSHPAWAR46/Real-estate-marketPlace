@@ -139,7 +139,7 @@ export default function CreateListing () {
 
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Create a listing</h1>
+      <h1 className='text-3xl font-semibold text-center my-7 bg-gray-200 rounded p-2 shadow-lg'>Create a listing</h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
 
@@ -305,7 +305,7 @@ export default function CreateListing () {
             <p className='text-red-700 text-sm'>{imgUploadError && imgUploadError}</p>
             {formData.imageUrls.length >0 && formData.imageUrls.map((url, index)=>(
 
-            <div key={url} className="flex justify-between p-3 border items-center">
+            <div key={url} className="flex justify-between p-3 border items-center bg-gray-200 rounded shadow-xl">
                 <img src={url} alt="listing image" className="w-20 h-20 object-cover rounded-lg" />
                 <button onClick={() => handleRemoveImage(index)} type="button" className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75">Delete</button>
             </div>

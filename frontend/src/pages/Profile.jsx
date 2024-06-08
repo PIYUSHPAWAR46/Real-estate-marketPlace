@@ -10,6 +10,8 @@ import { updateUserStart,
   deleteUserSuccess,
   signOutUserStart} from '../redux/user/userSlice.js';
 import {Link} from 'react-router-dom';
+import { IoArrowDownCircle } from "react-icons/io5";
+
 
 const Profile = () => {
 
@@ -68,6 +70,7 @@ const Profile = () => {
      
 
      const handleChange = (e) =>{
+      
         setFormData({...formData, [e.target.id]: e.target.value});
      }
 
@@ -132,7 +135,7 @@ const Profile = () => {
       }
      };
 
-     const handleShowListings  =async()=>{
+     const handleShowListings  = async()=>{
           try{
             setShowListingsError(false);
             const res = await fetch(`/api/user/listings/${currentUser._id}`);
@@ -171,13 +174,13 @@ const Profile = () => {
      }
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+    <div className="p-3 max-w-lg mx-auto ">
+      <h1 className='text-3xl font-semibold text-center my-7 bg-gray-200 rounded p-2 shadow-lg'>Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input onChange={(e) => setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept="image/*"/>
 
       <img onClick={()=> fileRef.current.click()}  src={formData.avatar || currentUser.avatar } alt="profile" className="rounded-full h-24 w-24 object-cover
-       cursor-pointer self-center mt-2"/>
+       cursor-pointer self-center mt-2 border-2 border-solid border-slate-900"/>
 
        <p className="text-sm self-center">
         {fileUploadError ? (
@@ -191,9 +194,10 @@ const Profile = () => {
               )
         }
        </p>
-       <input type='text' placeholder="username" defaultValue={currentUser.username} 
+       <input type='text' placeholder="username" defaultValue={currentUser.username} required
        id="username" className="border p-3 rounded-lg" onChange={handleChange}/>
        <input
+       required
           type='email'
           placeholder='email'
           id='email'
@@ -202,6 +206,7 @@ const Profile = () => {
            onChange={handleChange}
         />
        <input
+       required
           type='password'
           placeholder='password'
            onChange={handleChange}
@@ -213,25 +218,26 @@ const Profile = () => {
         </button>
 
         <Link className='bg-green-700 text-white p-3 rounded-lg 
-        uppercase text-center hover:opacity-95' to={'/create-listing'}>Create Listing</Link> 
+        uppercase text-center hover:opacity-95 font-bold' to={'/create-listing'}>Create Listing</Link> 
       </form>
       <div className='flex justify-between mt-2'>
-        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete account</span>
-        <span onClick={handleSignOut}  className='text-red-700 cursor-pointer'> Sign Out</span>
+        <span onClick={handleDeleteUser} className="text-white cursor-pointer bg-red-700 p-1 rounded text-sm">Delete account</span>
+        <span onClick={handleSignOut}  className='text-white cursor-pointer bg-slate-600 p-1 rounded font-semibold'> Sign Out</span>
       </div>
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className="text-red-700 mt-5">Show Listings</button>
+      <button onClick={handleShowListings} className="text-white mt-5 bg-gray-500 flex rounded-lg p-2 font-bold text-lg">Show Listings<IoArrowDownCircle size={28}/>
+</button>
       <p className='text-red-700 mt-5'>{showListingsError ? 'Error showing listings': ''}</p>
 
         {userListings && userListings.length >0 && (
       <div className="flex flex-col gap-4">
-        <h1 className='text-center mt-7 text-2xl font-semibold'>Your Listings</h1>
+        <h1 className='text-center mt-7 text-2xl font-semibold bg-slate-400 rounded-lg'>Your Listings</h1>
 
         {userListings.map((listing)=> (
-        <div key={listing._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
+        <div key={listing._id} className="border rounded-lg p-3 flex justify-between items-center gap-4 bg-gray-200 shadow-2xl">
 
           <Link to={`/listing/${listing._id}`}>
           <img src={listing.imageUrls[0]} alt="listing cover" className="w-16 h-16 object-contain"/>
@@ -244,10 +250,10 @@ const Profile = () => {
                 <p>{listing.name}</p>
               </Link>
           <div className='flex flex-col item-center'>
-            <button onClick={()=> handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+            <button onClick={()=> handleListingDelete(listing._id)} className='text-red-600 uppercase text-sm m-1'>Delete</button>
 
             <Link to={`/update-listing/${listing._id}`}>
-            <button  className='text-red-700 uppercase'>Edit</button>
+            <button  className='text-white uppercase bg-slate-700 p-1 rounded text m-1'>Edit</button>
            </Link>
           </div>
         </div>
